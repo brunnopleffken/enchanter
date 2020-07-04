@@ -1,0 +1,20 @@
+{
+  "name": "enchanter",
+  "version": "0.0.1",
+  "description": "Native JS form wizard plugin for Bootstrap 5",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^3.9.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunnopleffken/enchanter.git"
+  },
+  "author": "Brunno Pleffken",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brunnopleffken/enchanter/issues"
+  },
+  "homepage": "https://github.com/brunnopleffken/enchanter#readme"
+}

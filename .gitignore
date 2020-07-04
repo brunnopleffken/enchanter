@@ -1,0 +1,8 @@
+# IDE
+.vscode/
+
+# Node.js
+node_modules/
+
+# Those macOS files...
+.DS_Store

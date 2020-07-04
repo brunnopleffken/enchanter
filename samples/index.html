@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enchanter</title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="row py-4">
+      <div class="col">
+        <div class="text-center">
+          <h1>Enchanter</h1>
+          <p class="lead">The definitive form wizard plugin for Bootstrap 5</p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <form action="" id="registration">
+          <nav>
+            <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+              <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1">Step 1</a>
+              <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2">Step 2</a>
+              <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step3">Step 3</a>
+            </div>
+          </nav>
+          <div class="tab-content py-4" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="step1">
+              <h4>Personal data</h4>
+              <div class="mb-3">
+                <label for="first_name">Required field 1</label>
+                <input type="text" class="form-control" id="first_name" required>
+              </div>
+              <div class="mb-3">
+                <label for="first_name">Required field 2</label>
+                <input type="text" class="form-control" id="first_name" required>
+              </div>
+              <div class="mb-3">
+                <label for="first_name">Optional field</label>
+                <input type="text" class="form-control" id="first_name">
+              </div>
+            </div>
+            <div class="tab-pane fade" id="step2">
+              <h4>Contact information</h4>
+              <div class="mb-3">
+                <label for="first_name">Required field 1</label>
+                <input type="text" class="form-control" id="first_name" required>
+              </div>
+              <div class="mb-3">
+                <label for="first_name">Optional field</label>
+                <input type="text" class="form-control" id="first_name">
+              </div>
+              <div class="mb-3">
+                <label for="first_name">Required field 2</label>
+                <textarea rows="5" class="form-control" required></textarea>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="step3">
+              <h4>Review your information</h4>
+              <div class="mb-3">
+                <label for="first_name">Required field 1</label>
+                <input type="text" class="form-control-plaintext" value="Lorem ipsum dolor sit amet" id="first_name">
+              </div>
+              <div class="mb-3">
+                <label for="first_name">Optional field</label>
+                <input type="text" class="form-control-plaintext" value="Lorem ipsum dolor sit amet" id="first_name">
+              </div>
+              <div class="mb-3">
+                <label for="first_name">Required field 2</label>
+                <input type="text" class="form-control-plaintext" value="Lorem ipsum dolor sit amet" id="first_name">
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-between">
+            <div class="col-auto"><button type="button" class="btn btn-secondary" data-enchanter="previous">Previous</button></div>
+            <div class="col-auto">
+              <button type="button" class="btn btn-primary" data-enchanter="next">Next</button>
+              <button type="submit" class="btn btn-primary" data-enchanter="finish">Finish</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+  <script src="../dist/enchanter.js"></script>
+  <script>
+    const wizard = new Enchanter('registration');
+  </script>
+</body>
+</html>
