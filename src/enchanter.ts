@@ -15,20 +15,46 @@ interface EnchanterOptions {
     previousSelector: string
 }
 
+interface EnchanterCallbacks {
+    onNext: Function,
+    onPrevious: Function
+}
+
 class Enchanter {
-    private container: HTMLElement;
-    private navItem: NodeListOf<HTMLElement>;
+    private callbacks: EnchanterCallbacks;
     private options: EnchanterOptions;
+
+    private container: HTMLElement;
     private tabCurrentIndex: number;
     private tabNextIndex: number;
     private tabPreviousIndex: number;
 
-    constructor(containerSelector: string) {
+    constructor(containerSelector: string, options: Object = {}, callbacks: Object = {}) {
+        this.options = {
+            enableFormValidation: true,
+            finishSelector: '[data-enchanter="finish"]',
+            navItemSelector: '[data-toggle="tab"]',
+            nextSelector: '[data-enchanter="next"]',
+            previousSelector: '[data-enchanter="previous"]'
+        };
+
+        this.callbacks = {
+            onNext: null,
+            onPrevious: null,
+        };
+
+        Object.assign(this.options, options);
+        Object.assign(this.callbacks, callbacks);
+
         this.container = document.getElementById(containerSelector);
         this.bootstrap();
     }
 
     public next(): boolean {
+        if (this.callbacks.onNext() != null && this.callbacks.onNext() == false) {
+            return false;
+        }
+
         let nextElement: Element = this.container.querySelector('.nav .nav-link:nth-child(' + this.tabNextIndex + ')');
         new bootstrap.Tab(nextElement).show();
 
@@ -44,11 +70,13 @@ class Enchanter {
             this.container.querySelector(this.options.nextSelector).classList.add('d-none');
             this.container.querySelector(this.options.finishSelector).classList.remove('d-none');
         }
-
-        return true;
     }
 
     public previous(): boolean {
+        if (this.callbacks.onPrevious() != null && this.callbacks.onPrevious() == false) {
+            return false;
+        }
+
         let nextElement = this.container.querySelector('.nav .nav-link:nth-child(' + this.tabPreviousIndex + ')');
         new bootstrap.Tab(nextElement).show();
 
@@ -64,19 +92,9 @@ class Enchanter {
             this.container.querySelector(this.options.nextSelector).classList.remove('d-none');
             this.container.querySelector(this.options.finishSelector).classList.add('d-none');
         }
-
-        return true;
     }
 
     private bootstrap() {
-        this.options = {
-            enableFormValidation: true,
-            finishSelector: '[data-enchanter="finish"]',
-            navItemSelector: '[data-toggle="tab"]',
-            nextSelector: '[data-enchanter="next"]',
-            previousSelector: '[data-enchanter="previous"]'
-        };
-
         this.tabCurrentIndex = this.currentIndex();
         this.tabNextIndex = this.nextIndex();
 
