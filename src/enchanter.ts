@@ -8,7 +8,6 @@
 declare var bootstrap: any;
 
 interface EnchanterOptions {
-    enableFormValidation: boolean,
     finishSelector: string,
     navItemSelector: string,
     nextSelector: string,
@@ -31,7 +30,6 @@ class Enchanter {
 
     constructor(containerSelector: string, options: Object = {}, callbacks: Object = {}) {
         this.options = {
-            enableFormValidation: true,
             finishSelector: '[data-enchanter="finish"]',
             navItemSelector: '[data-toggle="tab"]',
             nextSelector: '[data-enchanter="next"]',
