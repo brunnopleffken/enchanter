@@ -19,7 +19,7 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6">
-        <form action="" id="registration">
+        <form action="" method="post" id="registration">
           <nav>
             <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
               <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1">Step 1</a>
@@ -31,46 +31,46 @@
             <div class="tab-pane fade show active" id="step1">
               <h4>Personal data</h4>
               <div class="mb-3">
-                <label for="first_name">Required field 1</label>
-                <input type="text" class="form-control" id="first_name" required>
+                <label for="field1">Required field 1</label>
+                <input type="text" name="field1" class="form-control" id="field1" required>
               </div>
               <div class="mb-3">
-                <label for="first_name">Required field 2</label>
-                <input type="text" class="form-control" id="first_name" required>
+                <label for="field2">Required field 2</label>
+                <input type="text" name="field2" class="form-control" id="field2" required>
               </div>
               <div class="mb-3">
-                <label for="first_name">Optional field</label>
-                <input type="text" class="form-control" id="first_name">
+                <label for="field3">Optional field</label>
+                <input type="text" name="field3" class="form-control" id="field3">
               </div>
             </div>
             <div class="tab-pane fade" id="step2">
               <h4>Contact information</h4>
               <div class="mb-3">
-                <label for="first_name">Required field 1</label>
-                <input type="text" class="form-control" id="first_name" required>
+                <label for="field4">Required field 1</label>
+                <input type="text" name="field4" class="form-control" id="field4" required>
               </div>
               <div class="mb-3">
-                <label for="first_name">Optional field</label>
-                <input type="text" class="form-control" id="first_name">
+                <label for="field5">Optional field</label>
+                <input type="text" name="field5" class="form-control" id="field5">
               </div>
               <div class="mb-3">
-                <label for="first_name">Required field 2</label>
-                <textarea rows="5" class="form-control" required></textarea>
+                <label for="textarea1">Required field 2</label>
+                <textarea name="textarea1" rows="5" class="form-control" id="textarea1" required></textarea>
               </div>
             </div>
             <div class="tab-pane fade" id="step3">
               <h4>Review your information</h4>
               <div class="mb-3">
                 <label for="first_name">Required field 1</label>
-                <input type="text" class="form-control-plaintext" value="Lorem ipsum dolor sit amet" id="first_name">
+                <input type="text" class="form-control-plaintext" value="Lorem ipsum dolor sit amet">
               </div>
               <div class="mb-3">
                 <label for="first_name">Optional field</label>
-                <input type="text" class="form-control-plaintext" value="Lorem ipsum dolor sit amet" id="first_name">
+                <input type="text" class="form-control-plaintext" value="Lorem ipsum dolor sit amet">
               </div>
               <div class="mb-3">
                 <label for="first_name">Required field 2</label>
-                <input type="text" class="form-control-plaintext" value="Lorem ipsum dolor sit amet" id="first_name">
+                <input type="text" class="form-control-plaintext" value="Lorem ipsum dolor sit amet">
               </div>
             </div>
           </div>
@@ -89,9 +89,24 @@
   <!-- JavaScript and dependencies -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
   <script src="../dist/enchanter.js"></script>
   <script>
-    const wizard = new Enchanter('registration');
+    var registrationForm = $('#registration');
+    var formValidate = registrationForm.validate({
+      errorClass: 'is-invalid',
+      errorPlacement: () => false
+    });
+
+    const wizard = new Enchanter('registration', {}, {
+      onNext: () => {
+        if (!registrationForm.valid()) {
+          formValidate.focusInvalid();
+          return false;
+        }
+      }
+    });
   </script>
 </body>
 </html>
