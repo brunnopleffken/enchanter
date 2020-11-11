@@ -7,21 +7,21 @@
 
 declare var bootstrap: any;
 
-interface EnchanterOptions {
+interface IEnchanterOptions {
     finishSelector: string,
     navItemSelector: string,
     nextSelector: string,
     previousSelector: string
 }
 
-interface EnchanterCallbacks {
+interface IEnchanterCallbacks {
     onNext: Function,
     onPrevious: Function
 }
 
 class Enchanter {
-    private callbacks: EnchanterCallbacks;
-    private options: EnchanterOptions;
+    private callbacks: IEnchanterCallbacks;
+    private options: IEnchanterOptions;
 
     private container: HTMLElement;
     private tabCurrentIndex: number;
