@@ -16,7 +16,7 @@ class Enchanter {
         this.bootstrap();
     }
     next() {
-        if (this.callbacks.onNext() != null && this.callbacks.onNext() == false) {
+        if (this.callbacks.onNext != null && this.callbacks.onNext() == false) {
             return false;
         }
         let nextElement = this.container.querySelector('.nav .nav-link:nth-child(' + this.tabNextIndex + ')');
@@ -33,7 +33,7 @@ class Enchanter {
         }
     }
     previous() {
-        if (this.callbacks.onPrevious() != null && this.callbacks.onPrevious() == false) {
+        if (this.callbacks.onPrevious != null && this.callbacks.onPrevious() == false) {
             return false;
         }
         let nextElement = this.container.querySelector('.nav .nav-link:nth-child(' + this.tabPreviousIndex + ')');

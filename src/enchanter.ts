@@ -49,7 +49,7 @@ class Enchanter {
     }
 
     public next(): boolean {
-        if (this.callbacks.onNext() != null && this.callbacks.onNext() == false) {
+        if (this.callbacks.onNext != null && this.callbacks.onNext() == false) {
             return false;
         }
 
@@ -71,7 +71,7 @@ class Enchanter {
     }
 
     public previous(): boolean {
-        if (this.callbacks.onPrevious() != null && this.callbacks.onPrevious() == false) {
+        if (this.callbacks.onPrevious != null && this.callbacks.onPrevious() == false) {
             return false;
         }
 
