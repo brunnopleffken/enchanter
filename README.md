@@ -6,15 +6,15 @@ Bootstrap version 5 is on air, and since Bootstrap 5 no longer has jQuery as a d
 
 ## How to use
 
-Your `<form>` tag should involve the `.nav` and `.tab-content` elements. The footer of the form must contain "Back", "Next" and "Finish" buttons with the `data-enchanter` attributes, as shown below:
+Your `<form>` tag should wrap the `.nav` and `.tab-content` elements. The footer of the form must contain "Back", "Next" and "Finish" buttons with the `data-enchanter` attributes, as shown below:
 
 ```html
 <form action="" method="post" id="registration">
   <nav>
     <div class="nav nav-pills nav-fill" id="nav-tab">
-      <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1">Step 1</a>
-      <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2">Step 2</a>
-      <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step3">Step 3</a>
+      <a class="nav-link active" id="step1-tab" data-bs-toggle="tab" href="#step1">Step 1</a>
+      <a class="nav-link" id="step2-tab" data-bs-toggle="tab" href="#step2">Step 2</a>
+      <a class="nav-link" id="step3-tab" data-bs-toggle="tab" href="#step3">Step 3</a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
