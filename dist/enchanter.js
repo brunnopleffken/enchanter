@@ -9,6 +9,7 @@ class Enchanter {
         this.callbacks = {
             onNext: null,
             onPrevious: null,
+            onFinish: null
         };
         Object.assign(this.options, options);
         Object.assign(this.callbacks, callbacks);
@@ -49,6 +50,11 @@ class Enchanter {
             this.container.querySelector(this.options.finishSelector).classList.add('d-none');
         }
     }
+    finish() {
+        if (this.callbacks.onFinish != null && this.callbacks.onFinish() == false) {
+            return false;
+        }
+    }
     bootstrap() {
         this.tabCurrentIndex = this.currentIndex();
         this.tabNextIndex = this.nextIndex();
@@ -59,6 +65,7 @@ class Enchanter {
     addEventBindings() {
         this.container.querySelector(this.options.previousSelector).addEventListener('click', () => this.previous());
         this.container.querySelector(this.options.nextSelector).addEventListener('click', () => this.next());
+        this.container.querySelector(this.options.finishSelector).addEventListener('click', () => this.finish());
     }
     getIndex(element) {
         return [...element.parentNode.children].findIndex(c => c == element) + 1;
