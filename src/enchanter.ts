@@ -17,6 +17,7 @@ interface IEnchanterOptions {
 interface IEnchanterCallbacks {
     onNext: Function,
     onPrevious: Function
+    onFinish: Function
 }
 
 class Enchanter {
@@ -39,6 +40,7 @@ class Enchanter {
         this.callbacks = {
             onNext: null,
             onPrevious: null,
+            onFinish: null
         };
 
         Object.assign(this.options, options);
@@ -92,6 +94,12 @@ class Enchanter {
         }
     }
 
+    public finish(): boolean {
+        if (this.callbacks.onFinish != null && this.callbacks.onFinish() == false) {
+            return false;
+        }
+    }
+
     private bootstrap() {
         this.tabCurrentIndex = this.currentIndex();
         this.tabNextIndex = this.nextIndex();
@@ -105,6 +113,7 @@ class Enchanter {
     private addEventBindings() {
         this.container.querySelector(this.options.previousSelector).addEventListener('click', () => this.previous());
         this.container.querySelector(this.options.nextSelector).addEventListener('click', () => this.next());
+        this.container.querySelector(this.options.finishSelector).addEventListener('click', () => this.finish());
     }
 
     private getIndex(element: HTMLElement): number {
