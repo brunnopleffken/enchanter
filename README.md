@@ -63,6 +63,8 @@ const wizard = new Enchanter('registration', {}, {
 });
 ```
 
+![Screenshot 2023-03-17 at 13-20-45 Enchanter](https://user-images.githubusercontent.com/3427344/225961488-6b86b3d1-6c38-412b-8e0f-1b9756739b24.png)
+
 ## Is it stable?
 
 Well... I've been using Enchanter for more than two years now on almost every form on the [Sinaxys](https://sinaxys.com) (my company) website.
@@ -72,5 +74,5 @@ Well... I've been using Enchanter for more than two years now on almost every fo
 We have some improvements in progress, if you want to help:
 
 * Overwrite default options with `new Enchanter('form_id', { option1: 'value', option2: 'value' });`.
-* Out-of-the-box BS5-compatible form validation in each step (get rid of jquery-validation).
+* Gget rid of jquery-validation and omplement out-of-the-box BS5-compatible form validation in each step.
 * Add option to disable clicks on `.nav-link` in case button clicks are mandatory.
