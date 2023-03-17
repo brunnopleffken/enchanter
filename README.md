@@ -74,5 +74,5 @@ Well... I've been using Enchanter for more than two years now on almost every fo
 We have some improvements in progress, if you want to help:
 
 * Overwrite default options with `new Enchanter('form_id', { option1: 'value', option2: 'value' });`.
-* Gget rid of jquery-validation and omplement out-of-the-box BS5-compatible form validation in each step.
+* Get rid of jquery-validation and implement out-of-the-box BS5-compatible form validation in each step.
 * Add option to disable clicks on `.nav-link` in case button clicks are mandatory.
