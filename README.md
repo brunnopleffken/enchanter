@@ -2,7 +2,7 @@
 
 Enchanter is a native form wizard plugin for Bootstrap 5.
 
-Bootstrap version 5 is on air, and since Bootstrap 5 no longer has jQuery as a dependency, this is a plugin made from scratch using TypeScript.
+Bootstrap version 5 is on air, and since Bootstrap 5 no longer has jQuery as a dependency, this is a plugin made from scratch using vanilla JavaScript.
 
 ![Screenshot 2022-12-02 at 10-41-46 Enchanter](https://user-images.githubusercontent.com/3427344/205306100-7f3c0212-ff7e-495b-9824-01626d69bc69.png)
 
@@ -50,7 +50,7 @@ And that's all!
 
 ### Callbacks and validations
 
-Enchanter has support for callbacks, it means you can use `onNext` and `onPrevious` for validations, for example. Our sample uses jQuery Validation for this (yeah, I know, jQuery), but my goal for the future is to create an embedded validation system thar works the same way our sample does.
+Enchanter has support for callbacks, it means you can use `onNext` and `onPrevious` for validations, for example. Our sample uses jQuery Validation for this (yeah, I know, jQuery), but my goal for the future is to create an embedded validation system that works the same way our sample does.
 
 ```js
 const wizard = new Enchanter('registration', {}, {
