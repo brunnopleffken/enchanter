@@ -8,6 +8,18 @@ Bootstrap version 5 is on air, and since Bootstrap 5 no longer has jQuery as a d
 
 ## How to use
 
+### Installation
+
+Just add to your `package.json`:
+
+```json
+"dependencies": {
+  "enchanter": "https://github.com/brunnopleffken/enchanter"
+}
+```
+
+### Configuration
+
 Your `<form>` tag should wrap the `.nav` and `.tab-content` elements. The footer of the form must contain "Back", "Next" and "Finish" buttons with the `data-enchanter` attributes, as shown below:
 
 ```html
@@ -67,12 +79,14 @@ const wizard = new Enchanter('registration', {}, {
 
 ## Is it stable?
 
-Well... I've been using Enchanter for more than two years now on almost every form on the [Sinaxys](https://sinaxys.com) (my company) website.
+Well... I've been using Enchanter for more than four years now on almost every form on the [Sinaxys](https://sinaxys.com) adnd [ContaExpert](https://www.contaexpert.com.br) website.
+
+Are you also using Enchanter? Let me know.
 
 ## How to help
 
 We have some improvements in progress, if you want to help:
 
 * Overwrite default options with `new Enchanter('form_id', { option1: 'value', option2: 'value' });`.
-* Get rid of jquery-validation and implement out-of-the-box BS5-compatible form validation in each step.
-* Add option to disable clicks on `.nav-link` in case button clicks are mandatory.
+* Get rid of jquery-validation and implement an out-of-the-box form validation in each step.
+* Add option to disable clicks on `.nav-link` in case Next/Prev button clicks are mandatory.
