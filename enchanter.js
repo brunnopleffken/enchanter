@@ -9,6 +9,8 @@
 
 class Enchanter {
     constructor(containerSelector, options = {}, callbacks = {}) {
+        const container = document.getElementById(containerSelector);
+
         this.options = {
             finishSelector: '[data-enchanter="finish"]',
             navItemSelector: '[data-toggle="tab"]',
@@ -24,7 +26,12 @@ class Enchanter {
 
         Object.assign(this.options, options);
         Object.assign(this.callbacks, callbacks);
-        this.container = document.getElementById(containerSelector);
+
+        if (!container) {
+            throw new Error(`Enchanter: container element with ID "${containerSelector}" not found`);
+        }
+
+        this.container = container;
         this.bootstrap();
     }
 
