@@ -8,6 +8,8 @@
  */
 
 class Enchanter {
+    #elements = {};
+
     constructor(containerSelector, options = {}, callbacks = {}) {
         const container = document.getElementById(containerSelector);
 
@@ -32,7 +34,16 @@ class Enchanter {
         }
 
         this.container = container;
+        this.cacheElements();
         this.bootstrap();
+    }
+
+    cacheElements() {
+        this.#elements = {
+            previous: this.container.querySelector(this.options.previousSelector),
+            next: this.container.querySelector(this.options.nextSelector),
+            finish: this.container.querySelector(this.options.finishSelector)
+        };
     }
 
     next() {
@@ -48,12 +59,12 @@ class Enchanter {
         this.tabNextIndex = this.nextIndex();
 
         if (this.tabCurrentIndex > 1) {
-            this.container.querySelector(this.options.previousSelector).removeAttribute('disabled');
+            this.#elements.previous.removeAttribute('disabled');
         }
 
         if (this.tabNextIndex == null) {
-            this.container.querySelector(this.options.nextSelector).classList.add('d-none');
-            this.container.querySelector(this.options.finishSelector).classList.remove('d-none');
+            this.#elements.next.classList.add('d-none');
+            this.#elements.finish.classList.remove('d-none');
         }
     }
 
@@ -70,12 +81,12 @@ class Enchanter {
         this.tabNextIndex = this.nextIndex();
 
         if (this.tabPreviousIndex == null) {
-            this.container.querySelector(this.options.previousSelector).setAttribute('disabled', 'disabled');
+            this.#elements.previous.setAttribute('disabled', 'disabled');
         }
 
         if (this.tabNextIndex != null) {
-            this.container.querySelector(this.options.nextSelector).classList.remove('d-none');
-            this.container.querySelector(this.options.finishSelector).classList.add('d-none');
+            this.#elements.next.classList.remove('d-none');
+            this.#elements.finish.classList.add('d-none');
         }
     }
 
@@ -90,15 +101,15 @@ class Enchanter {
     bootstrap() {
         this.tabCurrentIndex = this.currentIndex();
         this.tabNextIndex = this.nextIndex();
-        this.container.querySelector(this.options.previousSelector).setAttribute('disabled', 'disabled');
-        this.container.querySelector(this.options.finishSelector).classList.add('d-none');
+        this.#elements.previous.setAttribute('disabled', 'disabled');
+        this.#elements.finish.classList.add('d-none');
         this.addEventBindings();
     }
 
     addEventBindings() {
-        this.container.querySelector(this.options.previousSelector).addEventListener('click', () => this.previous());
-        this.container.querySelector(this.options.nextSelector).addEventListener('click', () => this.next());
-        this.container.querySelector(this.options.finishSelector).addEventListener('click', () => this.finish());
+        this.#elements.previous.addEventListener('click', () => this.previous());
+        this.#elements.next.addEventListener('click', () => this.next());
+        this.#elements.finish.addEventListener('click', () => this.finish());
     }
 
     getIndex(element) {
