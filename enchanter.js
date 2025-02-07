@@ -17,7 +17,8 @@ class Enchanter {
             finishSelector: '[data-enchanter="finish"]',
             navItemSelector: '[data-toggle="tab"]',
             nextSelector: '[data-enchanter="next"]',
-            previousSelector: '[data-enchanter="previous"]'
+            previousSelector: '[data-enchanter="previous"]',
+            hideNav: false
         };
 
         this.callbacks = {
@@ -103,6 +104,11 @@ class Enchanter {
         this.tabNextIndex = this.nextIndex();
         this.#elements.previous.setAttribute('disabled', 'disabled');
         this.#elements.finish.classList.add('d-none');
+
+        if (this.options.hideNav) {
+            this.container.querySelector('.nav').classList.add('d-none');
+        }
+
         this.addEventBindings();
     }
 
