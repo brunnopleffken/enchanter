@@ -1,17 +1,14 @@
 "use strict";
 
-/**
- * ENCHANTER
- * Native JS/TS form wizard plugin for Bootstrap 5
- * Created by Brunno Pleffken Hosti
- * Repository: https://github.com/brunnopleffken/enchanter
- */
-
 class Enchanter {
     #elements = {};
 
     constructor(containerSelector, options = {}, callbacks = {}) {
-        const container = document.getElementById(containerSelector);
+        this.container = document.getElementById(containerSelector);
+
+        if (!this.container) {
+            throw new Error(`Enchanter: container element with ID "${containerSelector}" not found`);
+        }
 
         this.options = {
             finishSelector: '[data-enchanter="finish"]',
@@ -30,11 +27,6 @@ class Enchanter {
         Object.assign(this.options, options);
         Object.assign(this.callbacks, callbacks);
 
-        if (!container) {
-            throw new Error(`Enchanter: container element with ID "${containerSelector}" not found`);
-        }
-
-        this.container = container;
         this.cacheElements();
         this.bootstrap();
     }
@@ -48,7 +40,7 @@ class Enchanter {
     }
 
     next() {
-        if (this.callbacks.onNext != null && this.callbacks.onNext() == false) {
+        if (this.callbacks.onNext?.() === false) {
             return false;
         }
 
@@ -63,14 +55,14 @@ class Enchanter {
             this.#elements.previous.removeAttribute('disabled');
         }
 
-        if (this.tabNextIndex == null) {
+        if (this.tabNextIndex === null) {
             this.#elements.next.classList.add('d-none');
             this.#elements.finish.classList.remove('d-none');
         }
     }
 
     previous() {
-        if (this.callbacks.onPrevious != null && this.callbacks.onPrevious() == false) {
+        if (this.callbacks.onPrevious?.() === false) {
             return false;
         }
 
@@ -81,18 +73,18 @@ class Enchanter {
         this.tabPreviousIndex = this.previousIndex();
         this.tabNextIndex = this.nextIndex();
 
-        if (this.tabPreviousIndex == null) {
+        if (this.tabPreviousIndex === null) {
             this.#elements.previous.setAttribute('disabled', 'disabled');
         }
 
-        if (this.tabNextIndex != null) {
+        if (this.tabNextIndex !== null) {
             this.#elements.next.classList.remove('d-none');
             this.#elements.finish.classList.add('d-none');
         }
     }
 
     finish() {
-        if (this.callbacks.onFinish != null && this.callbacks.onFinish() == false) {
+        if (this.callbacks.onFinish?.() === false) {
             return false;
         }
 
