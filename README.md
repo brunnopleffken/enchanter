@@ -73,6 +73,18 @@ const wizard = new Enchanter('registration', {}, {
 
 ![Screenshot 2023-03-17 at 13-20-45 Enchanter](https://user-images.githubusercontent.com/3427344/225961488-6b86b3d1-6c38-412b-8e0f-1b9756739b24.png)
 
+### Hide nav/tab bar
+
+It's possible to auto-hide the nav/tab bar ("Step 1", "Step 2") if you wish. This feature is useful if you want to prevent users from navigating between steps directly, or if you want to implement a custom title or a progress bar, for example.
+
+Just add the option `hideNav: true`:
+
+```js
+const wizard = new Enchanter('registration', {
+  hideNav: true
+})
+```
+
 ## Is it stable?
 
 Well... I've been using Enchanter for more than four years on almost every form of [Sinaxys](https://sinaxys.com) and [ContaExpert](https://www.contaexpert.com.br) web applications on production, serving thousands of users every day!
