@@ -35,15 +35,22 @@ class Enchanter {
         this.#elements = {
             previous: this.container.querySelector(this.options.previousSelector),
             next: this.container.querySelector(this.options.nextSelector),
-            finish: this.container.querySelector(this.options.finishSelector)
+            finish: this.container.querySelector(this.options.finishSelector),
+            navLinks: Array.from(this.container.querySelectorAll('.nav .nav-link'))
         };
+
+        if (!this.#elements.navLinks.length) {
+            throw new Error('Enchanter: no navigation links found inside the container');
+        }
     }
 
     next() {
         if (this.callbacks.onNext?.() === false) return false;
 
-        let nextElement = this.container.querySelector('.nav .nav-link:nth-child(' + this.tabNextIndex + ')');
-        new bootstrap.Tab(nextElement).show();
+        const nextTab = this.getNavLinkByIndex(this.tabNextIndex);
+        if (!nextTab) return false;
+
+        new bootstrap.Tab(nextTab).show();
 
         this.tabCurrentIndex = this.tabNextIndex;
         this.tabPreviousIndex = this.previousIndex();
@@ -62,8 +69,10 @@ class Enchanter {
     previous() {
         if (this.callbacks.onPrevious?.() === false) return false;
 
-        let nextElement = this.container.querySelector('.nav .nav-link:nth-child(' + this.tabPreviousIndex + ')');
-        new bootstrap.Tab(nextElement).show();
+        const prevTab = this.getNavLinkByIndex(this.tabPreviousIndex);
+        if (!prevTab) return false;
+
+        new bootstrap.Tab(prevTab).show();
 
         this.tabCurrentIndex = this.tabPreviousIndex;
         this.tabPreviousIndex = this.previousIndex();
@@ -103,8 +112,13 @@ class Enchanter {
         this.#elements.finish?.addEventListener('click', () => this.finish());
     }
 
+    getNavLinkByIndex(index) {
+        if (!index) return null;
+        return this.#elements.navLinks[index - 1] ?? null;
+    }
+
     getIndex(element) {
-        return [...element.parentNode.children].findIndex(c => c == element) + 1;
+        return this.#elements.navLinks.findIndex(c => c === element) + 1;
     }
 
     currentIndex() {
@@ -112,22 +126,12 @@ class Enchanter {
     }
 
     nextIndex() {
-        let nextIndexCandidate = this.tabCurrentIndex + 1;
-
-        if (this.container.querySelector('.nav .nav-link:nth-child(' + nextIndexCandidate + ')') == null) {
-            return null;
-        }
-
-        return nextIndexCandidate;
+        const candidate = this.tabCurrentIndex + 1;
+        return candidate > this.#elements.navLinks.length ? null : candidate;
     }
 
     previousIndex() {
-        let nextIndexCandidate = this.tabCurrentIndex - 1;
-
-        if (this.container.querySelector('.nav .nav-link:nth-child(' + nextIndexCandidate + ')') == null) {
-            return null;
-        }
-
-        return nextIndexCandidate;
+        const candidate = this.tabCurrentIndex - 1;
+        return candidate < 1 ? null : candidate;
     }
 }
