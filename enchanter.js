@@ -52,12 +52,12 @@ class Enchanter {
         this.tabNextIndex = this.nextIndex();
 
         if (this.tabCurrentIndex > 1) {
-            this.#elements.previous.removeAttribute('disabled');
+            this.#elements.previous?.removeAttribute('disabled');
         }
 
         if (this.tabNextIndex === null) {
-            this.#elements.next.classList.add('d-none');
-            this.#elements.finish.classList.remove('d-none');
+            this.#elements.next?.classList.add('d-none');
+            this.#elements.finish?.classList.remove('d-none');
         }
     }
 
@@ -74,12 +74,12 @@ class Enchanter {
         this.tabNextIndex = this.nextIndex();
 
         if (this.tabPreviousIndex === null) {
-            this.#elements.previous.setAttribute('disabled', 'disabled');
+            this.#elements.previous?.setAttribute('disabled', 'disabled');
         }
 
         if (this.tabNextIndex !== null) {
-            this.#elements.next.classList.remove('d-none');
-            this.#elements.finish.classList.add('d-none');
+            this.#elements.next?.classList.remove('d-none');
+            this.#elements.finish?.classList.add('d-none');
         }
     }
 
@@ -94,8 +94,8 @@ class Enchanter {
     bootstrap() {
         this.tabCurrentIndex = this.currentIndex();
         this.tabNextIndex = this.nextIndex();
-        this.#elements.previous.setAttribute('disabled', 'disabled');
-        this.#elements.finish.classList.add('d-none');
+        this.#elements.previous?.setAttribute('disabled', 'disabled');
+        this.#elements.finish?.classList.add('d-none');
 
         if (this.options.hideNav) {
             this.container.querySelector('.nav').classList.add('d-none');
@@ -105,9 +105,9 @@ class Enchanter {
     }
 
     addEventBindings() {
-        this.#elements.previous.addEventListener('click', () => this.previous());
-        this.#elements.next.addEventListener('click', () => this.next());
-        this.#elements.finish.addEventListener('click', () => this.finish());
+        this.#elements.previous?.addEventListener('click', () => this.previous());
+        this.#elements.next?.addEventListener('click', () => this.next());
+        this.#elements.finish?.addEventListener('click', () => this.finish());
     }
 
     getIndex(element) {
