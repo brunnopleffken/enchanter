@@ -40,9 +40,7 @@ class Enchanter {
     }
 
     next() {
-        if (this.callbacks.onNext?.() === false) {
-            return false;
-        }
+        if (this.callbacks.onNext?.() === false) return false;
 
         let nextElement = this.container.querySelector('.nav .nav-link:nth-child(' + this.tabNextIndex + ')');
         new bootstrap.Tab(nextElement).show();
@@ -62,9 +60,7 @@ class Enchanter {
     }
 
     previous() {
-        if (this.callbacks.onPrevious?.() === false) {
-            return false;
-        }
+        if (this.callbacks.onPrevious?.() === false) return false;
 
         let nextElement = this.container.querySelector('.nav .nav-link:nth-child(' + this.tabPreviousIndex + ')');
         new bootstrap.Tab(nextElement).show();
@@ -84,10 +80,7 @@ class Enchanter {
     }
 
     finish() {
-        if (this.callbacks.onFinish?.() === false) {
-            return false;
-        }
-
+        if (this.callbacks.onFinish?.() === false) return false;
         return true;
     }
 
