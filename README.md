@@ -4,97 +4,157 @@ Enchanter is a lightweight vanilla JS form wizard plugin for Bootstrap 5 — wit
 
 ![Screenshot 2022-12-02 at 10-41-46 Enchanter](https://user-images.githubusercontent.com/3427344/205306100-7f3c0212-ff7e-495b-9824-01626d69bc69.png)
 
-## How to use
+## Quick Start
 
-### Installation
+### 1. Installation
 
-Just add to your `package.json`:
+Add Enchanter to your `package.json`:
 
 ```json
-"dependencies": {
-  "enchanter": "https://github.com/brunnopleffken/enchanter"
+{
+  "dependencies": {
+    "enchanter": "https://github.com/brunnopleffken/enchanter"
+  }
 }
 ```
 
-### Configuration
+### 2. Basic Setup
 
-Your `<form>` tag must wrap the `.nav` and `.tab-content` elements. The footer of the form must contain "Back", "Next" and "Finish" buttons with the `data-enchanter` attributes, as shown below:
+Create your form with three main components:
 
+**Step 1: Create the navigation tabs**
+```html
+<nav class="nav nav-pills nav-fill" id="nav-tab">
+  <a class="nav-link active" id="step1-tab" data-bs-toggle="tab" href="#step1">Step 1</a>
+  <a class="nav-link" id="step2-tab" data-bs-toggle="tab" href="#step2">Step 2</a>
+  <a class="nav-link" id="step3-tab" data-bs-toggle="tab" href="#step3">Step 3</a>
+</nav>
+```
+
+**Step 2: Add your form content using the `tab-pane` classes**
+```html
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="step1">
+    <!-- Step 1 content here -->
+  </div>
+  <div class="tab-pane fade" id="step2">
+    <!-- Step 2 content here -->
+  </div>
+  <div class="tab-pane fade" id="step3">
+    <!-- Step 3 content here -->
+  </div>
+</div>
+```
+
+**Step 3: Add navigation buttons**
+```html
+<button type="button" class="btn btn-secondary" data-enchanter="previous">Previous</button>
+<button type="button" class="btn btn-primary" data-enchanter="next">Next</button>
+<button type="submit" class="btn btn-primary" data-enchanter="finish">Finish</button>
+```
+
+**Complete Example:**
 ```html
 <form action="" method="post" id="registration">
-  <!-- The tab bar -->
+  <!-- Navigation tabs -->
   <nav class="nav nav-pills nav-fill" id="nav-tab">
     <a class="nav-link active" id="step1-tab" data-bs-toggle="tab" href="#step1">Step 1</a>
     <a class="nav-link" id="step2-tab" data-bs-toggle="tab" href="#step2">Step 2</a>
     <a class="nav-link" id="step3-tab" data-bs-toggle="tab" href="#step3">Step 3</a>
   </nav>
-  <!-- The content -->
+
+  <!-- Form content -->
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="step1">
-      Page 1
-    </div>
-    <div class="tab-pane fade" id="step2">
-      Page 2
-    </div>
-    <div class="tab-pane fade" id="step3">
-      Page 3
-    </div>
+    <div class="tab-pane fade show active" id="step1">Page 1</div>
+    <div class="tab-pane fade" id="step2">Page 2</div>
+    <div class="tab-pane fade" id="step3">Page 3</div>
   </div>
-  <!-- The buttons -->
+
+  <!-- Navigation buttons -->
   <button type="button" class="btn btn-secondary" data-enchanter="previous">Previous</button>
   <button type="button" class="btn btn-primary" data-enchanter="next">Next</button>
   <button type="submit" class="btn btn-primary" data-enchanter="finish">Finish</button>
 </form>
 ```
 
-Within the `<script>` tag, just declare the class by passing the form ID as a parameter:
+### 3. Initialize Enchanter
+
+Add this to your JavaScript file:
 
 ```js
-// "registration" is the <form> ID
+// Pass the form's ID attribute as a parameter
 const enchanter = new Enchanter('registration');
 ```
 
-And that's all!
+That's it! Your form wizard is now ready to use.
 
-### Callbacks and validations
+## Advanced Features
 
-Enchanter has support for callbacks, it means you can use `onNext` and `onPrevious` for validations, for example. Our sample uses jQuery Validation for this (yeah, I know, jQuery), but my goal for the future is to create an embedded validation system that works the same way our sample does.
+### Add form validation
+
+Validate form data before moving to the next step using the `onNext` callback:
 
 ```js
 const wizard = new Enchanter('registration', {}, {
   onNext: () => {
-    if (!registrationForm.valid()) {
-      formValidate.focusInvalid();
+    // Perform validation here
+    if (!formIsValid()) {
+      return false; // Stay on current step
+    }
+    return true; // Proceed to next step
+  }
+});
+```
+
+**Example with jQuery Validation Plugin:**
+
+> ⚠️ This example requires [jQuery](https://jquery.com/) and [jQuery Validation](https://jqueryvalidation.org/) plugin to be installed.
+
+```js
+const wizard = new Enchanter('registration', {}, {
+  onNext: () => {
+    if (!$('#registration').valid()) {
       return false;
     }
   }
 });
 ```
 
-![Screenshot 2023-03-17 at 13-20-45 Enchanter](https://user-images.githubusercontent.com/3427344/225961488-6b86b3d1-6c38-412b-8e0f-1b9756739b24.png)
+### Hide the Navigation Bar
 
-### Hide nav/tab bar
-
-It's possible to auto-hide the nav/tab bar ("Step 1", "Step 2") if you wish. This feature is useful if you want to prevent users from navigating between steps directly, or if you want to implement a custom title or a progress bar, for example.
-
-Just add the option `hideNav: true`:
+Hide the step tabs to prevent direct navigation between steps:
 
 ```js
+// Pass the form ID as the first parameter
 const wizard = new Enchanter('registration', {
   hideNav: true
-})
+});
 ```
 
-## Is it stable?
+Use this if you want to:
+- Enforce sequential step navigation
+- Implement a custom progress bar
+- Create a custom title display
 
-Well... I've been using Enchanter for more than four years on almost every form of [Sinaxys](https://sinaxys.com) and [ContaExpert](https://www.contaexpert.com.br) web applications on production, serving thousands of users every day!
+## Project status
 
-Are you also using Enchanter? Let me know.
+Enchanter is **battle-tested and production-ready**. It has been actively used in production for **4+ years** across mission-critical applications:
 
-## How to help
+- **[Sinaxys](https://sinaxys.com)** — A healthcare platform handling sensitive data and medical workflows;
+- **[ContaExpert](https://www.contaexpert.com.br)** — An accounting software managing financial records, employees and payrolls for thousands of businesses.
 
-We have some improvements in progress, if you want to help:
+The codebase is stable, well-maintained, and trusted by companies processing real, mission-critical business data every single day.
 
-* Overwrite default options with `new Enchanter('form_id', { option1: 'value', option2: 'value' });`.
-* Get rid of jquery-validation and implement an out-of-the-box form validation in each step.
-* Add option to disable clicks on `.nav-link` in case Next/Prev button clicks are mandatory.
+## Roadmap
+
+I'm planning these improvements:
+
+- [ ] Merge default options with user options: `new Enchanter('form_id', { option1: 'value', option2: 'value' })`
+- [ ] Built-in form validation without external plugins
+- [ ] Option to disable direct clicks on `.nav-link` (enforce Next/Prev buttons)
+
+## Contributing
+
+Found a bug? Have a suggestion? I'd love to hear from you! Feel free to open an issue or contribute to the project.
+
+Are you using Enchanter? Let me know on GitHub!
