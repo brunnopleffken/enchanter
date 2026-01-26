@@ -10,12 +10,8 @@ Enchanter is a lightweight vanilla JS form wizard plugin for Bootstrap 5 — wit
 
 Add Enchanter to your `package.json`:
 
-```json
-{
-  "dependencies": {
-    "enchanter": "https://github.com/brunnopleffken/enchanter"
-  }
-}
+```
+npm install @bpleffken/enchanter
 ```
 
 ### 2. Basic Setup

@@ -135,3 +135,8 @@ class Enchanter {
         return candidate < 1 ? null : candidate;
     }
 }
+
+// Export for CommonJS and ESM
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Enchanter;
+}

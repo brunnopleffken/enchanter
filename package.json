@@ -1,8 +1,8 @@
 {
-  "name": "enchanter",
-  "version": "1.4.0",
+  "name": "@bpleffken/enchanter",
+  "version": "1.4.1",
   "description": "Native JS form wizard plugin for Bootstrap 5",
-  "author": "Brunno Pleffken Hosti <brunno.pleffken@outlook.com>",
+  "author": "Brunno Pleffken Hosti <brunno.pleffken@outlook.com> (https://github.com/brunnopleffken)",
   "license": "MIT",
   "dependencies": {},
   "repository": {
