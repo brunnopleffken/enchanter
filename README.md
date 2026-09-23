@@ -134,20 +134,12 @@ Use this if you want to:
 
 ## Project status
 
-Enchanter is **battle-tested and production-ready**. It has been actively used in production for **4+ years** across mission-critical applications:
+Enchanter is **battle-tested and production-ready**. It has been actively used in production **since 2021** across mission-critical applications:
 
 - **[Sinaxys](https://sinaxys.com)** — A healthcare platform handling sensitive data and medical workflows;
 - **[ContaExpert](https://www.contaexpert.com.br)** — An accounting software managing financial records, employees and payrolls for thousands of businesses.
 
-The codebase is stable, well-maintained, and trusted by companies processing real, mission-critical business data every single day.
-
-## Roadmap
-
-I'm planning these improvements:
-
-- [ ] Merge default options with user options: `new Enchanter('form_id', { option1: 'value', option2: 'value' })`
-- [ ] Built-in form validation without external plugins
-- [ ] Option to disable direct clicks on `.nav-link` (enforce Next/Prev buttons)
+The codebase is stable, well-maintained and trusted by companies processing real, mission-critical business data every single day.
 
 ## Contributing
 
